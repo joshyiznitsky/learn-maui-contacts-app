@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Contacts.Maui.Views.ContactsPage"
+             Title="Contacts Page">
+    <Grid
+        Padding="5"
+        RowDefinitions="50,*,50"
+        ColumnDefinitions="*">
+        <SearchBar
+            x:Name="SearchBar"
+            Grid.Row="0"
+            Grid.Column="0"
+            Placeholder="Search Contacts"
+            TextChanged="SearchBar_TextChanged">
+        </SearchBar>
+        <!-- ListView has scroll capability enabled. Do not add scroll capability to the parent layout. -->
+        <ListView
+            Grid.Row="1"
+            Grid.Column="1"
+            x:Name="ListContacts" 
+            BackgroundColor="Transparent"
+            SeparatorColor="Silver"
+            RowHeight="65"
+            ItemSelected="ListContacts_ItemSelected"
+            ItemTapped="ListContacts_ItemTapped">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <TextCell 
+                        Text="{Binding Name}"
+                        Detail="{Binding Email}">
+                        <TextCell.ContextActions>
+                            <MenuItem 
+                                Text="Delete"
+                                IsDestructive="True"
+                                Clicked="DeleteContact_Clicked"
+                                CommandParameter="{Binding .}"/>
+                        </TextCell.ContextActions>        
+                    </TextCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+        <Button
+            Grid.Row="2"
+            Grid.Column="0"
+            x:Name="AddContactButton"
+            Text="Add Contact"
+            Clicked="AddContactButton_Clicked"/>
+    </Grid>
+</ContentPage>
