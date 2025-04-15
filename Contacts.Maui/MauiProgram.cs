@@ -27,6 +27,8 @@ public static class MauiProgram
         //Scoped are created once per request (not used in this app)
         builder.Services.AddSingleton<IContactRepository, ContactInMemoryRepository>();
 
+        builder.Services.AddSingleton<IViewContactsUseCase, ViewContactsUseCase>();
+
         return builder.Build();
     }
 }
