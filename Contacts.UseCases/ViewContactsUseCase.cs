@@ -1,5 +1,6 @@
 ﻿using Contacts.UseCases.PluginInterfaces;
 using Contact = Contacts.CoreBusiness.Contact;
+using Contacts.UseCases.Interfaces;
 
 namespace Contacts.UseCases;
 

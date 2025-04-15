@@ -1,0 +1,13 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Debug Android",
+            "type": "maui",
+            "request": "launch",
+            "preLaunchTask": "maui: Build",
+            "project": "${workspaceFolder}/Contacts.Maui/Contacts.Maui.csproj",
+            "targetFramework": "net9.0-android"
+        }
+    ]
+}

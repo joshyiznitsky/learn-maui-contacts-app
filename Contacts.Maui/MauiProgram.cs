@@ -1,5 +1,8 @@
 ﻿using Microsoft.Extensions.Logging;
 using CommunityToolkit.Maui;
+using Microsoft.Extensions.DependencyInjection;
+using Contacts.UseCases;
+using Contacts.UseCases.Interfaces;
 using Contacts.UseCases.PluginInterfaces;
 using Contacts.Plugins.DataStore.InMemory;
 
@@ -25,9 +28,10 @@ public static class MauiProgram
         //Singletons are created once and shared across the app
         //Transient are created each time they are requested
         //Scoped are created once per request (not used in this app)
-        builder.Services.AddSingleton<IContactRepository, ContactInMemoryRepository>();
 
-        builder.Services.AddSingleton<IViewContactsUseCase, ViewContactsUseCase>();
+        // Use Microsoft.Extensions.DependencyInjection.ServiceCollectionServiceExtensions explicitly
+        ServiceCollectionServiceExtensions.AddSingleton<IContactRepository, ContactInMemoryRepository>(builder.Services);
+        ServiceCollectionServiceExtensions.AddSingleton<IViewContactsUseCase, ViewContactsUseCase>(builder.Services);
 
         return builder.Build();
     }
