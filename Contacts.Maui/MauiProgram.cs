@@ -35,12 +35,15 @@ public static class MauiProgram
         ServiceCollectionServiceExtensions.AddSingleton<IViewContactsUseCase, ViewContactsUseCase>(builder.Services);
         builder.Services.AddSingleton<IViewContactUseCase, ViewContactUseCase>();
         builder.Services.AddTransient<IEditContactUseCase, EditContactUseCase>();
+        builder.Services.AddTransient<IAddContactUseCase, AddContactUseCase>();
+        builder.Services.AddTransient<IDeleteContactUseCase, DeleteContactUseCase>();
 
         // we have to inject the contacts page into the program because it doesn't have a default constructor
         // (it has a constructor that takes a parameter of type IViewContactsUseCase)
         // so we have to create an instance of the contacts page and pass the IViewContactsUseCase to it
         builder.Services.AddSingleton<ContactsPage>();
         builder.Services.AddSingleton<EditContactPage>();
+        builder.Services.AddSingleton<AddContactPage>();
 
         return builder.Build();
     }

@@ -1,19 +1,24 @@
 using System;
 using Microsoft.Maui.Controls;
 using Contacts.Maui.Models;
-using Contact = Contacts.Maui.Models.Contact;
+using Contact = Contacts.CoreBusiness.Contact;
+using Contacts.UseCases.Interfaces;
+using System.Runtime.CompilerServices;
+using System.Threading.Tasks;
 
 namespace Contacts.Maui.Views
 {
     public partial class AddContactPage : ContentPage
     {
         private Contact contact;
-        public AddContactPage()
+        private readonly IAddContactUseCase addContactUseCase;
+        public AddContactPage(IAddContactUseCase addContactUseCase)
         {
             InitializeComponent();
+            this.addContactUseCase = addContactUseCase;
         }
 
-        private void SaveButton_Clicked(object sender, EventArgs e)
+        private async void SaveButton_Clicked(object sender, EventArgs e)
         {
             contact = new Contact
             {
@@ -22,9 +27,10 @@ namespace Contacts.Maui.Views
                 Phone = ContactControl.Phone,
                 Address = ContactControl.Address
             };
-            ContactRepository.AddContact(contact);
+            //ContactRepository.AddContact(contact);
+            await addContactUseCase.ExecuteAsync(contact);
 
-            Shell.Current.GoToAsync("..");
+            await Shell.Current.GoToAsync("..");
         }
 
         private void CancelButton_Clicked(object sender, EventArgs e)
