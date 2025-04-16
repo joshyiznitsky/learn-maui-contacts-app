@@ -1,5 +1,3 @@
-using Contact = Contacts.CoreBusiness.Contact;
-
 namespace Contacts.UseCases.Interfaces
 {
     public interface IViewContactsUseCase

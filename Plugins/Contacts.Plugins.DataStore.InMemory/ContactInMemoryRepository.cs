@@ -19,8 +19,31 @@ namespace Contacts.Plugins.DataStore.InMemory
             };
         }
 
+        public Task<Contact> GetContactByIdAsync(int contactId)
+        {
+            var contact = _contacts.FirstOrDefault(c => c.ContactId == contactId);
+            if (contact != null)
+            {
+                return Task.FromResult(new Contact
+                {
+                    ContactId = contact.ContactId,
+                    Name = contact.Name,
+                    Email = contact.Email,
+                    Phone = contact.Phone,
+                    Address = contact.Address
+                });
+            }
+
+            return null;
+        }
+
         public Task<List<Contact>> GetContactsAsync(string searchText)
         {
+            if (string.IsNullOrWhiteSpace(searchText))
+            {
+                return Task.FromResult(_contacts);
+            }
+            
             var contactsFound = _contacts
                 .Where(c => !string.IsNullOrWhiteSpace(c.Name) && c.Name.Contains(searchText, StringComparison.OrdinalIgnoreCase))
                 .ToList();
@@ -47,6 +70,23 @@ namespace Contacts.Plugins.DataStore.InMemory
             }
 
             return Task.FromResult(contactsFound);
+        }
+
+        public Task UpdateContactAsync(int contactId, Contact contact)
+        {
+            //check that contact ID passed in matches the ID of the Contact
+            if (contact.ContactId != contactId) return Task.CompletedTask;
+
+            var contactToUpdate = _contacts.FirstOrDefault(c => c.ContactId == contactId);
+            if (contactToUpdate != null)
+            {
+                contactToUpdate.Name = contact.Name;
+                contactToUpdate.Email = contact.Email;
+                contactToUpdate.Phone = contact.Phone;
+                contactToUpdate.Address = contact.Address;
+            }
+
+            return Task.CompletedTask;
         }
     }
 }

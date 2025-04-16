@@ -4,6 +4,8 @@ namespace Contacts.UseCases.PluginInterfaces
 {
     public interface IContactRepository
     {
-        Task<List<CoreBusiness.Contact>> GetContactsAsync(string searchText);
+        Task<Contact> GetContactByIdAsync(int contactId);
+        Task<List<Contact>> GetContactsAsync(string searchText);
+        Task UpdateContactAsync(int contactId, Contact contact);
     }
 }

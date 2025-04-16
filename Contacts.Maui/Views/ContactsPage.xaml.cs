@@ -3,14 +3,17 @@ using Microsoft.Maui.Controls;
 using Contacts.Maui.Models;
 using Contact = Contacts.Maui.Models.Contact;
 using System.Collections.ObjectModel;
+using Contacts.UseCases.Interfaces;
 
 namespace Contacts.Maui.Views
 {
     public partial class ContactsPage : ContentPage
     {
-        public ContactsPage()
+        private readonly IViewContactsUseCase viewContactsUseCase;
+        public ContactsPage(IViewContactsUseCase viewContactsUseCase)
         {
             InitializeComponent();
+            this.viewContactsUseCase = viewContactsUseCase;
         }
 
         protected override void OnAppearing()
@@ -25,7 +28,7 @@ namespace Contacts.Maui.Views
             if (ListContacts.SelectedItem == null)
                 return;
 
-            await Shell.Current.GoToAsync($"{nameof(EditContactsPage)}?Id={((Contact)ListContacts.SelectedItem).ContactId}");
+            await Shell.Current.GoToAsync($"{nameof(EditContactPage)}?Id={((CoreBusiness.Contact)ListContacts.SelectedItem).ContactId}");
         }
 
         private void ListContacts_ItemTapped(object sender, ItemTappedEventArgs e)
@@ -46,15 +49,15 @@ namespace Contacts.Maui.Views
             LoadContacts();
         }
 
-        private void LoadContacts()
+        private async void LoadContacts()
         {
-            var contacts = new ObservableCollection<Contact>(ContactRepository.GetContacts());
+            var contacts = new ObservableCollection<CoreBusiness.Contact>( await this.viewContactsUseCase.ExecuteAsync(string.Empty));
             ListContacts.ItemsSource = contacts;
         }
-        private void SearchBar_TextChanged(object sender, TextChangedEventArgs e)
+        private async void SearchBar_TextChanged(object sender, TextChangedEventArgs e)
         {
-            var contactsFound = new ObservableCollection<Contact>(ContactRepository.SearchContacts(((SearchBar)sender).Text));
-            ListContacts.ItemsSource = contactsFound;
+            var contacts = new ObservableCollection<CoreBusiness.Contact>( await this.viewContactsUseCase.ExecuteAsync(((SearchBar)sender).Text));
+            ListContacts.ItemsSource = contacts;
         }
     }
 }
