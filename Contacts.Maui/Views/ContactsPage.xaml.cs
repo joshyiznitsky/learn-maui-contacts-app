@@ -62,5 +62,10 @@ namespace Contacts.Maui.Views
             var contacts = new ObservableCollection<Contact>( await this.viewContactsUseCase.ExecuteAsync(((SearchBar)sender).Text));
             ListContacts.ItemsSource = contacts;
         }
+
+        private void TestButton_Clicked(object sender, EventArgs e)
+        {
+            Shell.Current.GoToAsync(nameof(TestPage1));
+        }
     }
 }

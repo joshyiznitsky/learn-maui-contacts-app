@@ -5,8 +5,9 @@
              Title="Contacts Page">
     <Grid
         Padding="5"
-        RowDefinitions="50,*,50"
-        ColumnDefinitions="*">
+        RowDefinitions="50,*,50, 50"
+        ColumnDefinitions="*"
+        RowSpacing="5">
         <SearchBar
             x:Name="SearchBar"
             Grid.Row="0"
@@ -46,5 +47,11 @@
             x:Name="AddContactButton"
             Text="Add Contact"
             Clicked="AddContactButton_Clicked"/>
+        <Button
+            Grid.Row="3"
+            Grid.Column="0"
+            x:Name="TestButton"
+            Text="Test"
+            Clicked="TestButton_Clicked"/>
     </Grid>
 </ContentPage>
