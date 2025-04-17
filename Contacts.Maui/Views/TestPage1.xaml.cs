@@ -11,5 +11,11 @@ namespace Contacts.Maui.Views
             viewModel = new ContactViewModel();
             this.BindingContext = this.viewModel;
         }
+
+        protected override void OnAppearing()
+        {
+            base.OnAppearing();
+            viewModel.LoadContact(1);
+        }
     }
 }
