@@ -22,6 +22,9 @@ public partial class Contacts_MVVM_Page : ContentPage
 
         await this.contactsViewModel.LoadContactsAsync();
 
+        this.ContactsCollection.ItemsSource = null;
+        this.ContactsCollection.ItemsSource = this.contactsViewModel.Contacts;
+
         // Debug after loading
         System.Diagnostics.Debug.WriteLine($"Contacts Count After Load: {contactsViewModel.Contacts.Count}");
         // Debug if contacts are loaded
