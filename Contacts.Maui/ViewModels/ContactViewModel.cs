@@ -28,9 +28,12 @@ namespace Contacts.Maui.ViewModels
             }
         }
 
-        public bool IsNameProvided { get; set; }
-        public bool IsEmailProvided { get; set; }
-        public bool IsEmailFormatValid { get; set; }
+        [ObservableProperty]
+        private bool isNameProvided;
+        [ObservableProperty]
+        private bool isEmailProvided;
+        [ObservableProperty]
+        private bool isEmailFormatValid;
 
 
 
