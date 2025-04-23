@@ -28,19 +28,9 @@ namespace Contacts.Maui.ViewModels
             }
         }
 
-        private bool isContactValid;
- 
-         public bool IsContactValid
-         {
-             get { return isContactValid; }
-             set 
-             { 
-                 if (value == false)
-                 {
-                     isContactValid = value;
-                 }                
-             }
-         }
+        public bool IsNameProvided { get; set; }
+        public bool IsEmailProvided { get; set; }
+        public bool IsEmailFormatValid { get; set; }
 
 
 
@@ -63,21 +53,48 @@ namespace Contacts.Maui.ViewModels
         [RelayCommand]
         public async Task EditContact()
         {
-            await this.editContactUseCase.ExecuteAsync(this.contact.ContactId, this.contact);
-            await BackToContacts();
+            if (await ValidateContact())
+            {
+                await this.editContactUseCase.ExecuteAsync(this.contact.ContactId, this.contact);
+                await BackToContacts();
+            }
         }
 
         [RelayCommand]
         public async Task AddContact()
         {
-            await this.addContactUseCase.ExecuteAsync(this.contact);
-            await BackToContacts();
+            if (await ValidateContact())
+            {
+                await this.addContactUseCase.ExecuteAsync(this.contact);
+                await BackToContacts();
+            }
         }
 
         [RelayCommand]
         public async Task BackToContacts()
         {
             await Shell.Current.GoToAsync($"///{nameof(Contacts_MVVM_Page)}");
+        }
+
+        private async Task<bool> ValidateContact()
+        {
+            if (!this.IsNameProvided)
+            {
+                await Shell.Current.DisplayAlert("Error", "Name is required", "OK");
+                return false;
+            }
+            if (!this.IsEmailProvided)
+            {
+                await Shell.Current.DisplayAlert("Error", "Email is required", "OK");
+                return false;
+            }
+            if (!this.IsEmailFormatValid)
+            {
+                await Shell.Current.DisplayAlert("Error", "Email format is invalid", "OK");
+                return false;
+            }
+
+            return true;
         }
 
 
