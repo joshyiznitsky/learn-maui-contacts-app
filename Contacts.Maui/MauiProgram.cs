@@ -1,6 +1,5 @@
 ﻿using Microsoft.Extensions.Logging;
 using CommunityToolkit.Maui;
-using Microsoft.Extensions.DependencyInjection;
 using Contacts.UseCases;
 using Contacts.UseCases.Interfaces;
 using Contacts.UseCases.PluginInterfaces;
@@ -8,6 +7,7 @@ using Contacts.Plugins.DataStore.InMemory;
 using Contacts.Maui.Views;
 using Contacts.Maui.ViewModels;
 using Contacts.Maui.Views_MVVM;
+
 
 namespace Contacts.Maui;
 public static class MauiProgram
@@ -41,6 +41,7 @@ public static class MauiProgram
         builder.Services.AddTransient<IDeleteContactUseCase, DeleteContactUseCase>();
 
         builder.Services.AddSingleton<ContactsViewModel>();
+        builder.Services.AddSingleton<ContactViewModel>();
 
         // we have to inject the contacts page into the program because it doesn't have a default constructor
         // (it has a constructor that takes a parameter of type IViewContactsUseCase)
@@ -50,6 +51,8 @@ public static class MauiProgram
         builder.Services.AddSingleton<AddContactPage>();
 
         builder.Services.AddSingleton<Contacts_MVVM_Page>();
+        builder.Services.AddSingleton<EditContactPage_MVVM>();
+        builder.Services.AddSingleton<AddContactPage_MVVM>();
 
         return builder.Build();
     }

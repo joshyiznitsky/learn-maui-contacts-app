@@ -1,6 +1,7 @@
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using Contacts.Maui.Models;
+using Contacts.Maui.Views_MVVM;
 using Contacts.UseCases.Interfaces;
 using System;
 using System.Collections.Generic;
@@ -43,10 +44,22 @@ namespace Contacts.Maui.ViewModels
         }
 
         [RelayCommand]
-        public async Task DeleteContactAsync(int contactId)
+        public async Task DeleteContact(int contactId)
         {
             await deleteContactUseCase.ExecuteAsync(contactId);
             await LoadContactsAsync();
+        }
+
+        [RelayCommand]
+        public async Task GoToEditContact(int contactId)
+        {
+            await Shell.Current.GoToAsync($"{nameof(EditContactPage_MVVM)}?Id={contactId}");
+        }
+
+        [RelayCommand]
+        public async Task GoToAddContact()
+        {
+            await Shell.Current.GoToAsync(nameof(AddContactPage_MVVM));
         }
     }
 }

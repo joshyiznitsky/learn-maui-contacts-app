@@ -37,14 +37,16 @@
                                 <SwipeItem
                                     Text="Edit"
                                     IsDestructive="False"
-                                    BackgroundColor="Green"/>
+                                    BackgroundColor="Green"
+                                    Command="{Binding Source={x:Reference ContactsCollection},Path=BindingContext.GoToEditContactCommand}"
+                                    CommandParameter="{Binding ContactId}"/>
                             </SwipeView.RightItems>
-                            <Frame Margin="0,5,0,5">
+                            <Border Margin="0,5,0,5">
                                 <StackLayout Orientation="Vertical" Spacing="5">
                                     <Label Text="{Binding Name}"/>
                                     <Label Text="{Binding Email}"/>
                                 </StackLayout>
-                            </Frame>
+                            </Border>
                         </SwipeView>
                     </StackLayout>
                 </DataTemplate>
@@ -54,8 +56,8 @@
         <Button
             Grid.Row="2"
             Grid.Column="0"
-            x:Name="AddContactButton"
             Text="Add Contact"
+            Command="{Binding GoToAddContactCommand}"
         />
 
     </Grid>
