@@ -10,13 +10,13 @@
         <Border Padding="10, 2, 10, 2">
             <HorizontalStackLayout>
                 <Label Text="Name" VerticalOptions="Center" WidthRequest="60"></Label>
-                <Entry VerticalOptions="Center" Text="{Binding Contact.Name}">
+                <Entry x:Name="NameEntry" VerticalOptions="Center" Text="{Binding Contact.Name}">
                     <Entry.Behaviors>
                         <toolkit:TextValidationBehavior
-                            x:Name="NameValidation"
                             Flags="ValidateOnAttaching,ValidateOnValueChanged" 
                             MinimumLength="1"
-                            IsValid="{Binding IsNameProvided}" />
+                            BindingContext="{Binding BindingContext, Source={x:Reference NameEntry}}"
+                            IsValid="{Binding IsNameProvided, Mode=TwoWay}" />
                     </Entry.Behaviors>
                 </Entry>
             </HorizontalStackLayout>
@@ -25,7 +25,7 @@
         <Border Padding="10, 2, 10, 2">
             <HorizontalStackLayout>
                 <Label Text="Email" VerticalOptions="Center" WidthRequest="60"></Label>
-                <Entry VerticalOptions="Center" Text="{Binding Contact.Email}">
+                <Entry x:Name="EmailEntry" VerticalOptions="Center" Text="{Binding Contact.Email}">
                     <Entry.Behaviors>
                         <toolkit:MultiValidationBehavior
                             x:Name="EmailValidation"
@@ -33,12 +33,12 @@
                             <toolkit:TextValidationBehavior
                                 Flags="ValidateOnAttaching,ValidateOnValueChanged"
                                 MinimumLength="1"
-                                toolkit:MultiValidationBehavior.Error="Email is required."
-                                IsValid="{Binding IsEmailProvided}" />
+                                BindingContext="{Binding BindingContext, Source={x:Reference EmailEntry}}"
+                                IsValid="{Binding IsEmailProvided, Mode=TwoWay}" />
                             <toolkit:EmailValidationBehavior
                                 Flags="ValidateOnAttaching,ValidateOnValueChanged"
-                                toolkit:MultiValidationBehavior.Error="Invalid email format."
-                                IsValid="{Binding IsEmailFormatValid}" />
+                                BindingContext="{Binding BindingContext, Source={x:Reference EmailEntry}}"
+                                IsValid="{Binding IsEmailFormatValid, Mode=TwoWay}" />
                         </toolkit:MultiValidationBehavior>
                     </Entry.Behaviors>
                 </Entry>

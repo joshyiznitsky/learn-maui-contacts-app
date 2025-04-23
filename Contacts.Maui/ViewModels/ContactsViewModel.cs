@@ -18,6 +18,18 @@ namespace Contacts.Maui.ViewModels
         private readonly IViewContactsUseCase viewContactsUseCase;
         private readonly IDeleteContactUseCase deleteContactUseCase;
         public ObservableCollection<Contact> Contacts { get; set; }
+
+        private string searchText;
+        public string SearchText
+        {
+            get { return searchText; }
+            set
+            {
+                searchText = value;
+                LoadContactsAsync(searchText);
+            }
+        }
+        
         //constructor
         public ContactsViewModel(
             IViewContactsUseCase viewContactsUseCase,
@@ -29,11 +41,11 @@ namespace Contacts.Maui.ViewModels
             this.Contacts = new ObservableCollection<Contact>();
         }
 
-        public async Task LoadContactsAsync()
+        public async Task LoadContactsAsync(string searchText=null)
         {
             this.Contacts.Clear();
 
-            var contacts = await viewContactsUseCase.ExecuteAsync(null);
+            var contacts = await viewContactsUseCase.ExecuteAsync(searchText);
             if (contacts != null && contacts.Count > 0)
             {
                 foreach (var contact in contacts)

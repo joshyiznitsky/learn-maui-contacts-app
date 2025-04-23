@@ -30,10 +30,27 @@ namespace Contacts.Maui.ViewModels
 
         [ObservableProperty]
         private bool isNameProvided;
+
+        partial void OnIsNameProvidedChanged(bool value)
+        {
+            System.Diagnostics.Debug.WriteLine($"IsNameProvided changed to: {value}");
+        }
+
         [ObservableProperty]
         private bool isEmailProvided;
+
+        partial void OnIsEmailProvidedChanged(bool value)
+        {
+            System.Diagnostics.Debug.WriteLine($"IsEmailProvided changed to: {value}");
+        }
+
         [ObservableProperty]
         private bool isEmailFormatValid;
+
+        partial void OnIsEmailFormatValidChanged(bool value)
+        {
+            System.Diagnostics.Debug.WriteLine($"IsEmailFormatValid changed to: {value}");
+        }
 
 
 
