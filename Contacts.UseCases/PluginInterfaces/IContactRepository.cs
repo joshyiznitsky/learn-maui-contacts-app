@@ -1,3 +1,5 @@
+using System.Threading.Tasks;
+using System.Collections.Generic;
 using Contact = Contacts.CoreBusiness.Contact;
 
 namespace Contacts.UseCases.PluginInterfaces
