@@ -7,6 +7,8 @@ using Contacts.Plugins.DataStore.InMemory;
 using Contacts.Maui.Views;
 using Contacts.Maui.ViewModels;
 using Contacts.Maui.Views_MVVM;
+using Contacts.Plugins.DataStore.SQLite;
+
 
 
 namespace Contacts.Maui;
@@ -33,7 +35,7 @@ public static class MauiProgram
         //Scoped are created once per request (not used in this app)
 
         // Use Microsoft.Extensions.DependencyInjection.ServiceCollectionServiceExtensions explicitly
-        builder.Services.AddSingleton<IContactRepository, ContactInMemoryRepository>();
+        builder.Services.AddSingleton<IContactRepository, ContactSQLiteRepository>();
         ServiceCollectionServiceExtensions.AddSingleton<IViewContactsUseCase, ViewContactsUseCase>(builder.Services);
         builder.Services.AddSingleton<IViewContactUseCase, ViewContactUseCase>();
         builder.Services.AddTransient<IEditContactUseCase, EditContactUseCase>();

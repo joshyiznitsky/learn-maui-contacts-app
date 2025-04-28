@@ -8,5 +8,5 @@ public class Constants
 {
     public const string DatabaseFileName = "ContactsSQLite.db3";
 
-    public const string DatabasePath => Path.Combine(FileSystem.AppDataDirectory, DatabaseFileName);
+    public static string DatabasePath => Path.Combine(FileSystem.AppDataDirectory, DatabaseFileName);
 }

@@ -13,6 +13,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Plugins", "Plugins", "{07D5
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Contacts.Plugins.DataStore.InMemory", "Plugins\Contacts.Plugins.DataStore.InMemory\Contacts.Plugins.DataStore.InMemory.csproj", "{B90857EE-354E-4735-BB3C-E2FDBBD74FC8}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Contacts.Plugins.DataStore.SQLite", "Plugins\Contacts.Plugins.DataStore.SQLite\Contacts.Plugins.DataStore.SQLite.csproj", "{C6EA68F6-C76C-46BD-9CE6-0685ABBE1494}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -71,11 +73,24 @@ Global
 		{B90857EE-354E-4735-BB3C-E2FDBBD74FC8}.Release|x64.Build.0 = Release|Any CPU
 		{B90857EE-354E-4735-BB3C-E2FDBBD74FC8}.Release|x86.ActiveCfg = Release|Any CPU
 		{B90857EE-354E-4735-BB3C-E2FDBBD74FC8}.Release|x86.Build.0 = Release|Any CPU
+		{C6EA68F6-C76C-46BD-9CE6-0685ABBE1494}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C6EA68F6-C76C-46BD-9CE6-0685ABBE1494}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C6EA68F6-C76C-46BD-9CE6-0685ABBE1494}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{C6EA68F6-C76C-46BD-9CE6-0685ABBE1494}.Debug|x64.Build.0 = Debug|Any CPU
+		{C6EA68F6-C76C-46BD-9CE6-0685ABBE1494}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{C6EA68F6-C76C-46BD-9CE6-0685ABBE1494}.Debug|x86.Build.0 = Debug|Any CPU
+		{C6EA68F6-C76C-46BD-9CE6-0685ABBE1494}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C6EA68F6-C76C-46BD-9CE6-0685ABBE1494}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C6EA68F6-C76C-46BD-9CE6-0685ABBE1494}.Release|x64.ActiveCfg = Release|Any CPU
+		{C6EA68F6-C76C-46BD-9CE6-0685ABBE1494}.Release|x64.Build.0 = Release|Any CPU
+		{C6EA68F6-C76C-46BD-9CE6-0685ABBE1494}.Release|x86.ActiveCfg = Release|Any CPU
+		{C6EA68F6-C76C-46BD-9CE6-0685ABBE1494}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{B90857EE-354E-4735-BB3C-E2FDBBD74FC8} = {07D57EEB-2F50-60C4-C011-FE4FA775C9A8}
+		{C6EA68F6-C76C-46BD-9CE6-0685ABBE1494} = {07D57EEB-2F50-60C4-C011-FE4FA775C9A8}
 	EndGlobalSection
 EndGlobal
